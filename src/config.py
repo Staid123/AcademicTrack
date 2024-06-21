@@ -1,34 +1,32 @@
 from pathlib import Path
-from dotenv import load_dotenv
-import os
-from pydantic_settings import BaseSettings
+from pydantic_settings import BaseSettings, SettingsConfigDict
 from pydantic import BaseModel
 
 BASE_DIR = Path(__file__).parent.parent
-load_dotenv()
 
 
 class PostgresDatabaseSettings(BaseModel):
-    host = os.environ.get("DB_HOST")
-    port = os.environ.get("DB_PORT")
-    name = os.environ.get("DB_NAME")
-    user = os.environ.get("DB_USER")
-    password = os.environ.get("DB_PASS")
-    url = os.environ.get("DB_URL")
+    host: str
+    port: int
+    name: str
+    user: str
+    password: str
+    url: str
 
 
 class PostgresTestDatabaseSettings(BaseModel):
-    host_test = os.environ.get("DB_HOST_TEST")
-    port_test = os.environ.get("DB_PORT_TEST")
-    name_test = os.environ.get("DB_NAME_TEST")
-    user_test = os.environ.get("DB_USER_TEST")
-    password_test = os.environ.get("DB_PASS_TEST")
+    host: str
+    port: int
+    name: str
+    user: str
+    password: str
+    url: str
 
 
 class GoogleSettings(BaseModel):
-    secret_auth = os.environ.get("SECRET_AUTH")
-    smtp_user = os.environ.get("SMTP_USER")
-    smpt_password = os.environ.get("SMTP_PASSWORD")
+    secret_auth: str
+    smtp_user: str
+    smtp_password: str
 
 
 class AuthJWT(BaseModel):
@@ -44,10 +42,15 @@ class RunConfig(BaseModel):
 
 
 class Settings(BaseSettings):
+    model_config = SettingsConfigDict(
+        env_file=".env",
+        case_sensitive=False,
+        env_nested_delimiter="__"
+    )
     run: RunConfig = RunConfig()
-    db: PostgresDatabaseSettings = PostgresDatabaseSettings()
-    db_test: PostgresTestDatabaseSettings = PostgresTestDatabaseSettings()
-    google: GoogleSettings = GoogleSettings()
+    db: PostgresDatabaseSettings
+    db_test: PostgresTestDatabaseSettings
+    google: GoogleSettings
     auth_jwt: AuthJWT = AuthJWT()
 
 
