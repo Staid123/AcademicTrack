@@ -9,25 +9,26 @@ load_dotenv()
 
 
 class PostgresDatabaseSettings(BaseModel):
-    HOST = os.environ.get("DB_HOST")
-    PORT = os.environ.get("DB_PORT")
-    NAME = os.environ.get("DB_NAME")
-    USER = os.environ.get("DB_USER")
-    PASS = os.environ.get("DB_PASS")
+    host = os.environ.get("DB_HOST")
+    port = os.environ.get("DB_PORT")
+    name = os.environ.get("DB_NAME")
+    user = os.environ.get("DB_USER")
+    password = os.environ.get("DB_PASS")
+    url = os.environ.get("DB_URL")
 
 
 class PostgresTestDatabaseSettings(BaseModel):
-    HOST_TEST = os.environ.get("DB_HOST_TEST")
-    PORT_TEST = os.environ.get("DB_PORT_TEST")
-    NAME_TEST = os.environ.get("DB_NAME_TEST")
-    USER_TEST = os.environ.get("DB_USER_TEST")
-    PASS_TEST = os.environ.get("DB_PASS_TEST")
+    host_test = os.environ.get("DB_HOST_TEST")
+    port_test = os.environ.get("DB_PORT_TEST")
+    name_test = os.environ.get("DB_NAME_TEST")
+    user_test = os.environ.get("DB_USER_TEST")
+    password_test = os.environ.get("DB_PASS_TEST")
 
 
 class GoogleSettings(BaseModel):
-    SECRET_AUTH = os.environ.get("SECRET_AUTH")
-    SMTP_USER = os.environ.get("SMTP_USER")
-    SMTP_PASSWORD = os.environ.get("SMTP_PASSWORD")
+    secret_auth = os.environ.get("SECRET_AUTH")
+    smtp_user = os.environ.get("SMTP_USER")
+    smpt_password = os.environ.get("SMTP_PASSWORD")
 
 
 class AuthJWT(BaseModel):
