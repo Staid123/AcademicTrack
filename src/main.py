@@ -3,7 +3,7 @@ from fastapi import FastAPI
 import uvicorn
 from config import settings
 from core.models import db_helper
-
+from fastapi.responses import ORJSONResponse
 
 
 @asynccontextmanager
@@ -17,6 +17,7 @@ async def lifespan(app: FastAPI):
 
 app = FastAPI(
     title="Academic Track",
+    default_response_class=ORJSONResponse,
     lifespan=lifespan)
 
 
