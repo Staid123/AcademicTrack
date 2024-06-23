@@ -2,7 +2,7 @@ from sqlalchemy import ForeignKey
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 from typing import TYPE_CHECKING
 from .base import Base
-from .enums import LessonType
+from ..utils.enums import LessonType
 
 
 if TYPE_CHECKING:
@@ -17,4 +17,4 @@ class Lesson(Base):
     number: Mapped[int]
     lesson_type: Mapped[LessonType] # лекция/лаба/практическая/консультация/єкзамен
     subject_id: Mapped[int] = mapped_column(ForeignKey('subject.id'))
-    subject: Mapped["Subject"] = relationship("Group", back_populates="students")
+    subject: Mapped["Subject"] = relationship("Subject", back_populates="lessons")

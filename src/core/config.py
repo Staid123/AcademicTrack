@@ -56,10 +56,10 @@ class Settings(BaseSettings):
         env_nested_delimiter="__"
     )
     run: RunConfig = RunConfig()
+    auth_jwt: AuthJWT = AuthJWT()
     db: PostgresDatabaseSettings
     db_test: PostgresTestDatabaseSettings
     google: GoogleSettings
-    auth_jwt: AuthJWT = AuthJWT()
 
 
 settings = Settings()

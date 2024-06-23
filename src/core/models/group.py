@@ -16,7 +16,7 @@ class Group(Base):
     chair: Mapped[str] # кафедра
     specialty: Mapped[str] # спеціальність
     specialty_code: Mapped[int] # код спеціальності
-    curator: Mapped[int] = mapped_column(ForeignKey("teacher.id"), unique=True)
+    curator_id: Mapped[int] = mapped_column(ForeignKey("teacher.id"), unique=True)
     students: Mapped[list["Student"]] = relationship("Student", back_populates="group")
     weekly_schedule: Mapped["WeeklySchedule"] = relationship('WeeklySchedule', uselist=False, back_populates='group')
 

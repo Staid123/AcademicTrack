@@ -1,4 +1,4 @@
-from sqlalchemy import CheckConstraint, ForeignKey
+from sqlalchemy import CheckConstraint, ForeignKey, UniqueConstraint
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 from typing import TYPE_CHECKING
 from .base import Base
@@ -13,6 +13,8 @@ if TYPE_CHECKING:
 class StudentSubjectAssociation(Base):
     student: Mapped["Student"] = relationship(back_populates='subjects_details')
     subject: Mapped["Subject"] = relationship(back_populates='students_details')
+    student_id = mapped_column(ForeignKey('student.id'))
+    subject_id = mapped_column(ForeignKey('subject.id'))
     kz1: Mapped[int | None] = mapped_column(default=0, server_default="0")
     kz2: Mapped[int | None] = mapped_column(default=0, server_default="0")
     exam_grade: Mapped[int | None] = mapped_column(default=0, server_default="0")

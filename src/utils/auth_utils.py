@@ -3,7 +3,7 @@ import datetime
 import uuid
 import bcrypt
 import jwt
-from src import config
+from core import config
 
 
 def encode_jwt(

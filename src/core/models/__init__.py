@@ -1,5 +1,4 @@
 __all__ = (
-    "db_helper", 
     "Base", 
     "Student", 
     "Group", 
@@ -13,7 +12,6 @@ __all__ = (
 )
 
 
-from .db_helper import db_helper
 from .base import Base
 from .group import Group
 from .associations import StudentSubjectAssociation

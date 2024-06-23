@@ -1,9 +1,9 @@
 from contextlib import asynccontextmanager
 from fastapi import FastAPI
 import uvicorn
-from config import settings
-from core.models import db_helper
+from core import db_helper, settings
 from fastapi.responses import ORJSONResponse
+from api import router as api_v1_router
 
 
 @asynccontextmanager
@@ -19,6 +19,13 @@ app = FastAPI(
     title="Academic Track",
     default_response_class=ORJSONResponse,
     lifespan=lifespan)
+
+
+app.include_router(
+    prefix="/api",
+    router=api_v1_router
+)
+
 
 
 @app.get("/")
