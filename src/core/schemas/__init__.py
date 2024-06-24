@@ -1,7 +1,9 @@
 __all__ = (
-    "SemesterRead",
-    "SemesterCreate"
+    "SemesterCreate",
+    "Semester",
+    "SemesterUpdate",
+    "SemesterUpdatePartial"
 )
 
 
-from .semester import SemesterRead, SemesterCreate
+from .semester import SemesterCreate, Semester, SemesterUpdate, SemesterUpdatePartial
