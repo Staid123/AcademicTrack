@@ -23,7 +23,7 @@ async def get_all_semesters(
     return semesters
 
 
-@router.get("/{semester_id}/", response_model=Semester)
+@router.get("/{entity_id}/", response_model=Semester)
 async def get_semester(
     semester: Semester = Depends(semester_by_id),
 ) -> Semester:

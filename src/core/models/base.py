@@ -18,17 +18,6 @@ class Base(DeclarativeBase):
         return f"{camel_case_to_snake_case(cls.__name__)}"
     
 
-    def __repr__(self):
-        """Relationships не используются в repr(), т.к. могут вести к неожиданным подгрузкам"""
-        cols = []
-        for idx, col in enumerate(self.__table__.columns.keys()):
-            if col in self.repr_cols or idx < self.repr_cols_num:
-                cols.append(f"{col}={getattr(self, col)}")
-
-        return f"<{self.__class__.__name__} {', '.join(cols)}>"
-    
-
-
 def camel_case_to_snake_case(input_str: str) -> str:
     """
     >>> camel_case_to_snake_case("SomeSDK")

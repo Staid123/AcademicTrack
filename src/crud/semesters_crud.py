@@ -17,9 +17,9 @@ async def get_all_semesters(
 
 async def get_semester(
     session: AsyncSession,
-    semester_id: int
+    entity_id: int
 ) -> Semester | None:
-    return await session.get(Semester, semester_id)
+    return await session.get(Semester, entity_id)
 
 
 async def create_semester(
