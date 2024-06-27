@@ -8,6 +8,8 @@ def create_not_found_exception(entity: str):
         )
     return not_found
 
+
 student_not_found = create_not_found_exception("Student")
 semester_not_found = create_not_found_exception("Semester")
 group_not_found = create_not_found_exception("Group")
+teacher_not_found = create_not_found_exception("Teacher")
