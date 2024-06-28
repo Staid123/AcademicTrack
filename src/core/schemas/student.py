@@ -44,7 +44,7 @@ class StudentUpdate(StudentCreate):
     pass
 
 
-class StudentUpdatePartial(StudentCreate):
+class StudentUpdatePartial(BaseModel):
     lastname: str | None = None
     firstname: str | None = None
     patronymic: str | None = None

@@ -59,7 +59,7 @@ async def update_group(
 @router.patch("/{entity_id}/", response_model=Group)
 async def update_group_partial(
     session: Annotated[AsyncSession, Depends(db_helper.session_getter)],
-    update_group: GroupUpdate,
+    update_group: GroupUpdatePartial,
     group: Annotated[Group, Depends(group_by_id)]
 ) -> Group:
     return await groups_crud.update_group(

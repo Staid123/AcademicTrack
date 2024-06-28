@@ -38,7 +38,7 @@ async def create_group(
 
 async def update_group(
     session: AsyncSession,
-    update_group: GroupUpdate,
+    update_group: GroupUpdate | GroupUpdatePartial,
     group: Group,
     partial: bool = False
 ) -> Group:

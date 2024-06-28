@@ -39,3 +39,41 @@ async def create_taecher(
     return await teachers_crud.create_teacher(
         session=session, teacher_in=teacher_in
     )
+
+
+@router.put("/{entity_id}/", response_model=Teacher)
+async def update_teacher(
+    session: Annotated[AsyncSession, Depends(db_helper.session_getter)],
+    update_teacher: TeacherUpdate,
+    teacher: Annotated[Teacher, Depends(teacher_by_id)]
+) -> Teacher:
+    return await teachers_crud.update_teacher(
+        session=session, 
+        update_teacher=update_teacher, 
+        teacher=teacher
+    )
+
+
+@router.patch("/{entity_id}/", response_model=Teacher)
+async def update_teacher_partial(
+    teacher: Annotated[Teacher, Depends(teacher_by_id)],
+    session: Annotated[AsyncSession, Depends(db_helper.session_getter)],
+    update_teacher: TeacherUpdatePartial,
+) -> Teacher:
+    return await teachers_crud.update_teacher(
+        session=session, 
+        update_teacher=update_teacher, 
+        teacher=teacher,
+        partial=True
+    )
+
+
+@router.delete("/{entity_id}/", status_code=status.HTTP_204_NO_CONTENT)
+async def delete_teacher(
+    teacher: Annotated[Teacher, Depends(teacher_by_id)],
+    session: Annotated[AsyncSession, Depends(db_helper.session_getter)]
+) -> None:
+    return await teachers_crud.delete_teacher(
+        teacher=teacher,
+        session=session
+    )

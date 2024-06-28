@@ -29,3 +29,23 @@ async def create_teacher(
     session.add(teacher)
     await session.commit()
     return teacher
+
+
+async def update_teacher(
+    session: AsyncSession,
+    update_teacher: TeacherUpdate | TeacherUpdatePartial,
+    teacher: Teacher,
+    partial: bool = False
+) -> Teacher:
+    for name, value in update_teacher.model_dump(exclude_unset=partial).items():
+        setattr(teacher, name, value)
+    await session.commit()
+    return teacher
+
+
+async def delete_teacher(
+    session: AsyncSession,
+    teacher: Teacher
+) -> None:
+    await session.delete(teacher)
+    await session.commit()
