@@ -2,8 +2,8 @@ from fastapi import HTTPException, Path, Depends
 from sqlalchemy.ext.asyncio import AsyncSession
 from typing import Callable, Annotated
 from core import db_helper
-from crud import students_crud, semesters_crud, groups_crud, teachers_crud, subjects_crud, lessons_crud
-from exceptions import semester_not_found, student_not_found, group_not_found, teacher_not_found, subject_not_found, lesson_not_found
+from crud import students_crud, semesters_crud, groups_crud, teachers_crud, subjects_crud, lessons_crud, daily_schedules_crud
+from exceptions import semester_not_found, student_not_found, group_not_found, teacher_not_found, subject_not_found, lesson_not_found, daily_schedule_not_found
 
 
 def create_get_by_id_function(
@@ -52,4 +52,10 @@ subject_by_id = create_get_by_id_function(
 lesson_by_id = create_get_by_id_function(
     lessons_crud.get_lesson,
     lesson_not_found
+)
+
+
+daily_schedule_by_id = create_get_by_id_function(
+    daily_schedules_crud.get_daily_schedule,
+    daily_schedule_not_found
 )

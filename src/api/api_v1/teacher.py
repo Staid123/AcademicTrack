@@ -26,7 +26,7 @@ async def get_all_teachers(
 @router.get("/{entity_id}/", response_model=Teacher)
 async def get_teacher(
     teacher: Annotated[TeacherRead, Depends(teacher_by_id)]
-) -> TeacherRead:
+) -> Teacher:
     return teacher
 
 
@@ -46,7 +46,7 @@ async def update_teacher(
     session: Annotated[AsyncSession, Depends(db_helper.session_getter)],
     update_teacher: TeacherUpdate,
     teacher: Annotated[TeacherRead, Depends(teacher_by_id)]
-) -> TeacherRead:
+) -> Teacher:
     return await teachers_crud.update_teacher(
         session=session, 
         update_teacher=update_teacher, 
@@ -59,7 +59,7 @@ async def update_teacher_partial(
     teacher: Annotated[TeacherRead, Depends(teacher_by_id)],
     session: Annotated[AsyncSession, Depends(db_helper.session_getter)],
     update_teacher: TeacherUpdatePartial,
-) -> TeacherRead:
+) -> Teacher:
     return await teachers_crud.update_teacher(
         session=session, 
         update_teacher=update_teacher, 

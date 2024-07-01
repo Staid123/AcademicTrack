@@ -21,7 +21,7 @@ async def get_subject(
     entity_id: int
 ) -> Subject | None:
     stmt = (
-        select(Subject).options(joinedload(Subject.teacher)).where(Subject.id==entity_id)
+        select(Subject).options(joinedload(Subject.teacher), selectinload(Subject.lessons)).where(Subject.id==entity_id)
     )
     subject = await session.scalars(stmt)
     return subject.one_or_none()

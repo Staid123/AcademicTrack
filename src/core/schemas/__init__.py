@@ -4,7 +4,8 @@ __all__ = (
     "Group", "GroupWithStudents", "GroupCreate", "GroupUpdate", "GroupUpdatePartial",
     "TeacherRead", "TeacherCreate", "TeacherUpdate", "TeacherUpdatePartial", "Teacher",
     "Subject", "SubjectCreate", "SubjectUpdate", "SubjectUpdatePartial", "SubjectRead",
-    "Lesson", "LessonCreate", "LessonRead", "LessonUpdate", "LessonUpdatePartial"
+    "Lesson", "LessonCreate", "LessonRead", "LessonUpdate", "LessonUpdatePartial",
+    "DailySchedule", "DailyScheduleCreate", "DailyScheduleRead", "DailyScheduleUpdate", "DailyScheduleUpdatePartial"
 )
 
 
@@ -16,3 +17,4 @@ from .student_group import GroupWithStudents, StudentWithGroup
 from .subject import SubjectCreate, SubjectUpdate, SubjectUpdatePartial, SubjectRead
 from .lesson import Lesson, LessonCreate, LessonRead, LessonUpdate, LessonUpdatePartial
 from .subject_teacher import Subject, Teacher
+from .daily_schedule import DailySchedule, DailyScheduleCreate, DailyScheduleRead, DailyScheduleUpdate, DailyScheduleUpdatePartial
