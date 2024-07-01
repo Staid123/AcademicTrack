@@ -10,16 +10,15 @@ class TeacherBase(BaseModel):
     password: str
     email: str
     status: UserStatus
-    # subjects: list["Subject"]
-
-
-class Teacher(TeacherBase):
-    model_config = ConfigDict(from_attributes=True)
-    id: int
 
 
 class TeacherCreate(TeacherBase):
     pass
+
+
+class TeacherRead(TeacherCreate):
+    model_config = ConfigDict(from_attributes=True)
+    id: int
 
 
 class TeacherUpdate(TeacherCreate):

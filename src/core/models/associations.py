@@ -24,4 +24,5 @@ class StudentSubjectAssociation(Base):
     __table_args__ = (
         CheckConstraint('kz1 >= 0 AND kz1 <= 100', name='check_kz1_range'),
         CheckConstraint('kz2 >= 0 AND kz2 <= 100', name='check_kz2_range'),
+        UniqueConstraint("semester_id", "student_id", "subject_id")
     )

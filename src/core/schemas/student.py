@@ -1,17 +1,5 @@
 from pydantic import BaseModel, ConfigDict
-
 from core.utils.enums import UserStatus
-
-
-class StudentGroup(BaseModel):
-    id: int
-    course: int
-    number: int
-    faculty: str
-    chair: str
-    specialty: str
-    specialty_code: int
-    curator_id: int
 
 
 class StudentBase(BaseModel):
@@ -32,10 +20,6 @@ class Student(StudentBase):
     id: int
 
 
-class StudentWithGroup(Student):
-    group: StudentGroup 
-
-
 class StudentCreate(StudentBase):
     pass
 
@@ -54,3 +38,15 @@ class StudentUpdatePartial(BaseModel):
     registration_number: int | None = None
     budget: bool | None = None
     group_id: int | None = None
+
+
+
+# class Group(BaseModel):
+#     id: int
+#     course: int
+#     number: int
+#     faculty: str
+#     chair: str
+#     specialty: str
+#     specialty_code: int
+#     curator_id: int

@@ -21,14 +21,14 @@ async def get_all_groups_with_students(
     )
 
 
-@router.get("/{group_id}/", response_model=GroupWithStudents)
+@router.get("/{entity_id}/", response_model=GroupWithStudents)
 async def get_group_with_students(
     session: Annotated[AsyncSession, Depends(db_helper.session_getter)],
-    group_id: int
+    entity_id: int
 ) -> GroupWithStudents:
     return await groups_crud.get_group(
         session=session, 
-        group_id=group_id
+        entity_id=entity_id
     )
 
 

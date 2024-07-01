@@ -1,18 +1,5 @@
 from pydantic import BaseModel, ConfigDict
 
-from core.utils.enums import UserStatus
-
-
-class StudentInGroup(BaseModel):
-    lastname: str
-    firstname: str
-    patronymic: str
-    password: str
-    email: str
-    status: UserStatus
-    registration_number: int
-    budget: bool
-
 
 class GroupBase(BaseModel):
     course: int
@@ -27,11 +14,6 @@ class GroupBase(BaseModel):
 class Group(GroupBase):
     model_config = ConfigDict(from_attributes=True)
     id: int
-
-
-class GroupWithStudents(Group):
-    students: list[StudentInGroup]
-    # weekly_schedule: "WeeklySchedule"
 
 
 class GroupCreate(GroupBase):

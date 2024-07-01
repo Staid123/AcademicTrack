@@ -20,4 +20,4 @@ class Subject(Base):
     # Связь многие-ко-многим с Student через таблицу ассоциаций
     # - students = relationship('Student', secondary='student_subject_association', back_populates='subjects')
     students_details: Mapped[list['StudentSubjectAssociation']] = relationship('StudentSubjectAssociation', back_populates='subject')
-    exam_date: Mapped[datetime | None]
+    exam_date: Mapped[datetime | None] = mapped_column(nullable=True)

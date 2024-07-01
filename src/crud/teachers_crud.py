@@ -1,4 +1,5 @@
 from sqlalchemy import select
+from sqlalchemy.orm import selectinload
 from sqlalchemy.ext.asyncio import AsyncSession
 from core.models import Teacher
 from core.schemas import TeacherCreate, TeacherUpdate, TeacherUpdatePartial
@@ -9,7 +10,7 @@ async def get_all_teachers(
     skip: int = 0,
     limit: int = 10,
 ) -> Teacher:
-    stmt = select(Teacher).offset(skip).limit(limit).order_by(Teacher.id)
+    stmt = select(Teacher).options(selectinload(Teacher.subjects)).offset(skip).limit(limit).order_by(Teacher.id)
     teachers = await session.scalars(stmt)
     return teachers.all()
 
@@ -18,7 +19,9 @@ async def get_teacher(
     session: AsyncSession,
     entity_id: int
 ) -> Teacher:
-    return await session.get(Teacher, entity_id)
+    stmt = select(Teacher).options(selectinload(Teacher.subjects)).where(Teacher.id==entity_id)
+    teacher = await session.scalars(stmt)
+    return teacher.one_or_none()
 
 
 async def create_teacher(
