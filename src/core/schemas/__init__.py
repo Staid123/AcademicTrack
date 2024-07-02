@@ -3,9 +3,11 @@ __all__ = (
     "Student", "StudentWithGroup", "StudentCreate", "StudentUpdate", "StudentUpdatePartial",
     "Group", "GroupWithStudents", "GroupCreate", "GroupUpdate", "GroupUpdatePartial",
     "TeacherRead", "TeacherCreate", "TeacherUpdate", "TeacherUpdatePartial", "Teacher",
-    "Subject", "SubjectCreate", "SubjectUpdate", "SubjectUpdatePartial", "SubjectRead",
+    "Subject", "SubjectCreate", "SubjectUpdate", "SubjectUpdatePartial", "SubjectRead", "SubjectOnlyWithTeacher",
     "Lesson", "LessonCreate", "LessonRead", "LessonUpdate", "LessonUpdatePartial",
-    "DailySchedule", "DailyScheduleCreate", "DailyScheduleRead", "DailyScheduleUpdate", "DailyScheduleUpdatePartial"
+    "DailySchedule", "DailyScheduleCreate", "DailyScheduleRead", "DailyScheduleUpdate", "DailyScheduleUpdatePartial",
+    "WeeklySchedule", "WeeklyScheduleCreate", "WeeklyScheduleRead", "WeeklyScheduleUpdate", "WeeklyScheduleUpdatePartial",
+    "Grade", "GradeCreate", "GradeUpdate", "GradeUpdatePartial", "GradeRead"
 )
 
 
@@ -16,5 +18,7 @@ from .teacher import TeacherRead, TeacherCreate, TeacherUpdate, TeacherUpdatePar
 from .student_group import GroupWithStudents, StudentWithGroup
 from .subject import SubjectCreate, SubjectUpdate, SubjectUpdatePartial, SubjectRead
 from .lesson import Lesson, LessonCreate, LessonRead, LessonUpdate, LessonUpdatePartial
-from .subject_teacher import Subject, Teacher
+from .subject_teacher import Subject, Teacher, SubjectOnlyWithTeacher
 from .daily_schedule import DailySchedule, DailyScheduleCreate, DailyScheduleRead, DailyScheduleUpdate, DailyScheduleUpdatePartial
+from .weekly_schedule import WeeklySchedule, WeeklyScheduleCreate, WeeklyScheduleRead, WeeklyScheduleUpdate, WeeklyScheduleUpdatePartial
+from .grades import Grade, GradeCreate, GradeUpdate, GradeUpdatePartial, GradeRead

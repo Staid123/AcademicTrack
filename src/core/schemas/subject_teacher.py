@@ -6,6 +6,10 @@ class Teacher(TeacherRead):
     subjects: list[SubjectRead]
 
 
-class Subject(SubjectRead):
+class SubjectOnlyWithTeacher(SubjectRead):
     teacher: TeacherRead
+
+class Subject(SubjectOnlyWithTeacher):
     lessons: list[LessonRead]
+
+

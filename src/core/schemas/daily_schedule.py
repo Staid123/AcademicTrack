@@ -1,6 +1,6 @@
 from pydantic import BaseModel, ConfigDict
 
-from core.schemas import LessonRead
+from core.schemas import Lesson
 from core.utils.enums import Day
 
 
@@ -10,8 +10,7 @@ class DailyScheduleBase(BaseModel):
 
 
 class DailyScheduleCreate(DailyScheduleBase):
-    day: Day
-    weekly_schedule_id: int
+    pass
 
 
 class DailyScheduleRead(DailyScheduleCreate):
@@ -21,7 +20,7 @@ class DailyScheduleRead(DailyScheduleCreate):
 
 class DailySchedule(DailyScheduleRead):
     # weekly_schedule: WeeklySchedule
-    lessons: list[LessonRead]
+    lessons: list[Lesson]
 
 
 class DailyScheduleUpdate(DailyScheduleCreate):

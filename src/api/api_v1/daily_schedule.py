@@ -11,7 +11,7 @@ router = APIRouter(prefix="/daily_schedule", tags=["Daily Schedule"])
 
 
 @router.get("/", response_model=list[DailySchedule])
-async def get_all_daily_schedules_with_lessons(
+async def get_all_daily_schedules_with_lessons_and_subject(
     session: Annotated[AsyncSession, Depends(db_helper.session_getter)],
     skip: int = Query(0, ge=0), 
     limit: int = Query(10, ge=1),
@@ -24,7 +24,7 @@ async def get_all_daily_schedules_with_lessons(
 
 
 @router.get("/{entity_id}/", response_model=DailySchedule)
-async def get_daily_schedule_with_lessons(
+async def get_daily_schedule_with_lessons_and_subject(
     daily_schedule: Annotated[DailySchedule, Depends(daily_schedule_by_id)]
 ) -> DailySchedule:
     return daily_schedule

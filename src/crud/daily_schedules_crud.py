@@ -1,19 +1,19 @@
-from typing import Sequence
 from sqlalchemy import select
 from sqlalchemy.orm import selectinload, joinedload
 from sqlalchemy.ext.asyncio import AsyncSession
 from core.models import DailySchedule
+from core.models import Lesson
 from core.schemas import DailyScheduleUpdate, DailyScheduleUpdatePartial, DailyScheduleCreate, DailyScheduleRead
 
 
-async def get_all_daily_schedules_with_lessons(
+async def get_all_daily_schedules_with_lessons_and_subject(
     session: AsyncSession,
     limit: int,
     skip: int
 ) -> list[DailySchedule]:
     stmt = (
         select(DailySchedule)
-        .options(selectinload(DailySchedule.lessons))
+        .options(selectinload(DailySchedule.lessons).joinedload(Lesson.subject))
         .offset(skip)
         .limit(limit)
         .order_by(DailySchedule.id)
@@ -28,7 +28,7 @@ async def get_daily_schedule(
 ) -> DailySchedule:
     stmt = (
         select(DailySchedule)
-        .options(selectinload(DailySchedule.lessons))
+        .options(selectinload(DailySchedule.lessons).joinedload(Lesson.subject))
         .where(DailySchedule.id==entity_id)
     )
     daily_schedule = await session.scalars(stmt)
